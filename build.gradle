@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation("org.testng:testng:7.12.0")
+    implementation("org.seleniumhq.selenium:selenium-java:4.45.0")
+    implementation("org.seleniumhq.selenium:selenium-chrome-driver:4.45.0")
+    implementation("org.slf4j:slf4j-simple:2.0.18")
+    implementation("org.slf4j:slf4j-api:2.0.18")
+    implementation("commons-io:commons-io:2.21.0")
+    implementation("com.github.javafaker:javafaker:1.0.2")
+    implementation("com.googlecode.json-simple:json-simple:1.1.1")
+}
+
+
+test {
+    useTestNG() {
+        if (project.hasProperty("username") && project.hasProperty("password")) {
+
+            systemProperties.put("username", project.property("username"))
+
+            systemProperties.put("password", project.property("password"))
+
+        }
+
+        if (project.hasProperty("suitename")) {
+
+            systemProperties.put("suitename", project.property("suitename"))
+
+        }
+
+        suites "./src/test/resources/loginsuit.xml"
+
+
+    }
+}
