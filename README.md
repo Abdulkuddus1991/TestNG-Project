@@ -38,3 +38,4 @@ End-to-end test automation for the OrangeHRM Demo site using **Selenium WebDrive
 <img width="731" height="374" alt="Screenshot 2026-07-31 001833" src="https://github.com/user-attachments/assets/086ae960-4ac0-4596-a7bf-b9ba58dd0bdb" />
 
 ## Allure Report Photo
+<img width="731" height="374" alt="Screenshot 2026-07-31 003127" src="https://github.com/user-attachments/assets/bb1b11bb-266f-452d-89a2-7c909e1a7d71" />
