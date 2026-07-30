@@ -34,4 +34,5 @@ End-to-end test automation for the OrangeHRM Demo site using **Selenium WebDrive
 ./gradlew clean test -Psuitename=EmployeeRegression
 ```
 
+# Extent Report Photo
 
