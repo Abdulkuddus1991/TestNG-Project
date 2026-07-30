@@ -35,4 +35,5 @@ End-to-end test automation for the OrangeHRM Demo site using **Selenium WebDrive
 ```
 
 ## Extent Report Photo
+<img width="731" height="374" alt="Screenshot 2026-07-31 001833" src="https://github.com/user-attachments/assets/086ae960-4ac0-4596-a7bf-b9ba58dd0bdb" />
 
