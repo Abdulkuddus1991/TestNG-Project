@@ -33,6 +33,5 @@ End-to-end test automation for the OrangeHRM Demo site using **Selenium WebDrive
 ```bash
 ./gradlew clean test -Psuitename=EmployeeRegression
 
-# Extent Report Photo
-<img width="942" height="395" alt="Extenreport1" src="https://github.com/user-attachments/assets/d6eb2381-c964-4822-8a17-3f519897058d" />
+
 
