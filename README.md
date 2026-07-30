@@ -28,7 +28,7 @@ End-to-end test automation for the OrangeHRM Demo site using **Selenium WebDrive
 - Gradle (or use the included Gradle Wrapper)
 - Chrome / Firefox browser
 - Git
-- 
+  
 ## How to Run Project
 ```bash
 ./gradlew clean test -Psuitename=EmployeeRegression
