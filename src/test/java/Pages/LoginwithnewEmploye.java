@@ -1,22 +1,22 @@
 package Pages;
 
+import com.aventstack.extentreports.ExtentTest;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.time.Instant;
 import java.util.List;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable;
 
 public class LoginwithnewEmploye {
+    public static WebDriver driver;
+    public ExtentTest test;
 
 
-    WebDriver driver;
     @FindBy(name ="username")
     WebElement inputUsername;
 
@@ -29,8 +29,6 @@ public class LoginwithnewEmploye {
     @FindBy(className = "oxd-userdropdown-name")
     public List<WebElement> profileFullName;
 
-   // @FindBy(className = "oxd-userdropdown-name")
-  //  WebElement profileName;
 
     @FindBy(xpath = "//span[text()='My Info']")
     WebElement menuMyInfo;
@@ -51,39 +49,78 @@ public class LoginwithnewEmploye {
     List<WebElement> Save;
 
 
-    public LoginwithnewEmploye (WebDriver driver){
+    public LoginwithnewEmploye (WebDriver driver, ExtentTest test){
         this.driver =driver;
         PageFactory.initElements(driver,this);
     }
 
+    public LoginwithnewEmploye (WebDriver driver) {
+        this(driver, null);
+    }
+
     public void inputMyInfo() throws InterruptedException {
-        inputUsername.sendKeys("muhibkhan");
+        // --- Username ---
+        String username = "muhibkhan";
+        inputUsername.sendKeys(username);
         Thread.sleep(2000);
-        inputPassword.sendKeys("1234567a");
+        if (test != null) test.info("Entered username: " + username);
+
+        // --- Password ---
+        String password = "1234567a";
+        inputPassword.sendKeys(password);
         Thread.sleep(2000);
+        if (test != null) test.info("Entered password: " + password);
+
+        // --- Submit Login ---
         SubmitButton.get(0).click();
         Thread.sleep(5000);
+        if (test != null) test.info("Clicked on Submit/Login button");
+
+        // --- Navigate to My Info ---
         menuMyInfo.click();
         Thread.sleep(5000);
+        if (test != null) test.info("Navigated to My Info section");
+
+        // --- Select Gender ---
         maleRadio.get(0).click();
-        Thread.sleep(5000);
+        Thread.sleep(3000);
+        if (test != null) test.info("Selected gender: Male");
+
+        // --- Save Personal Info ---
         clickSave.get(0).click();
         Thread.sleep(5000);
+        if (test != null) test.info("Clicked Save button for personal details");
+
+        // --- Scroll Down ---
         JavascriptExecutor jk = (JavascriptExecutor) driver;
         jk.executeScript("window.scrollBy(0,400)");
-        Thread.sleep(3000);
+        Thread.sleep(5000);
+        if (test != null) test.info("Scrolled page down by 400 pixels");
 
-    BloodSelection.get(2).click();
-    Thread.sleep(2000);
-    BloodSelection.get(2).sendKeys("B+");
-    Thread.sleep(3000);
-    Bpositive.click();
-    BloodSelection.get(2).sendKeys(Keys.ENTER);
-    Thread.sleep(3000);
-    Save.get(1).click();
-    Thread.sleep(2000);
+        // --- Blood Group Selection ---
+        String bloodGroup = "B+";
+        BloodSelection.get(2).click();
+        if (test != null) test.info("Opened blood group dropdown");
+
+        BloodSelection.get(2).sendKeys(bloodGroup);
+        Thread.sleep(5000);
+        if (test != null) test.info("Typed blood group: " + bloodGroup);
+
+        Bpositive.click();
+        Thread.sleep(5000);
+        if (test != null) test.info("Selected blood group option: B+");
+
+     //   BloodSelection.get(2).sendKeys(Keys.ENTER);
+       // Thread.sleep(5000);
+        //if (test != null) test.info("Confirmed blood group selection with Enter key");
+
+        // --- Save Blood Group ---
+        Save.get(1).click();
+        Thread.sleep(5000);
+        if (test != null) test.info("Clicked Save button for blood group");
+    }
 
 }
 
-    }
+
 

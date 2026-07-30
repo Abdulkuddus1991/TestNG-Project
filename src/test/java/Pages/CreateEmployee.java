@@ -1,14 +1,18 @@
 package Pages;
 
+import UtilityResource.UtilityPage;
+import com.aventstack.extentreports.ExtentTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
 import java.util.List;
 
 public class CreateEmployee {
     WebDriver driver;
+    public ExtentTest test;
     @FindBy(className ="oxd-text")
     List<WebElement> ClickPIMMenu;
 
@@ -39,31 +43,56 @@ public class CreateEmployee {
     @FindBy(className ="oxd-button")
     List<WebElement> ClickSave;
 
-    public CreateEmployee(WebDriver driver){
-        this.driver =driver;
-        PageFactory.initElements(driver,this);
+    public CreateEmployee(WebDriver driver, ExtentTest test) {
+        this.driver = driver;
+        this.test = test;
+        PageFactory.initElements(driver, this);
     }
-    public void inputData(String firstname,String middlename,String lastname,String username,String password,String confirmpassword) throws InterruptedException {
+    public CreateEmployee (WebDriver driver) {
+        this(driver, null);
+    }
+    public void inputData(String firstname,String middlename,String lastname,String username,String password,String confirmpassword) throws InterruptedException, IOException {
         ClickPIMMenu.get(1).click();
+        if (test != null) test.info("Clicked on PIM Menu");
         Thread.sleep(2000);
+
         ClickAdd.get(2).click();
+        if (test != null) test.info("Clicked on Add Employee button");
         Thread.sleep(2000);
+
         Infirstputname.sendKeys(firstname);
+        if (test != null) test.info("Entered First Name: " + firstname);
         Thread.sleep(2000);
+
         Inputmiddlename.sendKeys(middlename);
+        if (test != null) test.info("Entered Middle Name: " + middlename);
         Thread.sleep(2000);
+
         InputLastname.sendKeys(lastname);
+        if (test != null) test.info("Entered Last Name: " + lastname);
         Thread.sleep(2000);
+
         SwitchButton.get(0).click();
+        if (test != null) test.info( "Enabled Login Details toggle");
         Thread.sleep(2000);
+
         inputusername.get(5).sendKeys(username);
+        if (test != null) test.info("Entered Username: " + username);
         Thread.sleep(2000);
+
         inputuserpassword.get(6).sendKeys(password);
+        if (test != null) test.info("Entered Password");
         Thread.sleep(2000);
+
         confirompassword.get(7).sendKeys(confirmpassword);
+        if (test != null) test.info("Entered Confirm Password");
         Thread.sleep(2000);
+
         ClickSave.get(1).click();
+        if (test != null) test.info("Clicked Save button - Employee created successfully");
+        UtilityPage.getScreenShot(driver, "clicking save button", test);
         Thread.sleep(5000);
+
 
 
     }

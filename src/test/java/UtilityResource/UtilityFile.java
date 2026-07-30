@@ -1,5 +1,7 @@
 package UtilityResource;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -10,7 +12,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class UtilityFile {
-
 
     public static void saveEmployeeInfo(String firstName,String lastName,String username,String password) throws IOException, ParseException {
         String filepath="./src/test/resources/employee.json";

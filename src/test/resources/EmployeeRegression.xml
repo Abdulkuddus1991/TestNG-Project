@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Employee login functionality">
+    <test name="login functionality">
+        <classes>
+            <class name="TestRunner.LoginTestRunner"/>
+        </classes>
+    </test>
+    <test name="Add Employee with Json">
+        <classes>
+            <class name="TestRunner.AddEmployeeTestRunner"/>
+        </classes>
+    </test>
+
+    <test name="Create Employee by User">
+        <classes>
+            <class name="TestRunner.CreateEmployeeTestRunner"/>
+        </classes>
+    </test>
+
+    <test name="Login with newEmployee account">
+        <classes>
+            <class name="TestRunner.NewemployeTestRunner"/>
+        </classes>
+    </test>
+    <test name="Search Employee by Username">
+        <classes>
+            <class name="TestRunner.EmplySearchTestrunner"/>
+        </classes>
+    </test>
+    <test name="Login with Jason">
+        <classes>
+            <class name="TestRunner.LoginWithJson"/>
+        </classes>
+    </test>
+</suite>

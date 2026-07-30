@@ -18,26 +18,28 @@ dependencies {
     implementation("commons-io:commons-io:2.21.0")
     implementation("com.github.javafaker:javafaker:1.0.2")
     implementation("com.googlecode.json-simple:json-simple:1.1.1")
+    implementation("io.qameta.allure:allure-testng:2.30.0")
+    implementation("com.aventstack:extentreports:5.1.0")
 }
 
 
 test {
     useTestNG() {
-        if (project.hasProperty("username") && project.hasProperty("password")) {
-
-            systemProperties.put("username", project.property("username"))
-
-            systemProperties.put("password", project.property("password"))
-
-        }
-
         if (project.hasProperty("suitename")) {
-
-            systemProperties.put("suitename", project.property("suitename"))
-
+            systemProperty "suitename", project.property("suitename")
         }
+        suites "src/test/resources/EmployeeRegression.xml"
+    }
 
-        suites "./src/test/resources/loginsuit.xml"
+    // Prevent Gradle from finding and running extra tests
+    scanForTestClasses = false
+
+    // Fix the "unreadable input" error
+    doNotTrackState("TestNG suite only")
+
+    testLogging {
+        events "PASSED", "FAILED", "SKIPPED", "STANDARD_OUT"
+        showStandardStreams = true
 
 
     }

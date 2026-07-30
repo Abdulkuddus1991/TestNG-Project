@@ -1,93 +1,78 @@
 package Pages;
 
-import org.apache.commons.io.FileUtils;
+import UtilityResource.UtilityPage;
+import com.aventstack.extentreports.ExtentTest;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.Random;
 
 public class LoginPage {
-    WebDriver driver;
-    @FindBy(name ="username")
+    public static WebDriver driver;
+    public ExtentTest test;
+    @FindBy(name = "username")
     WebElement inputUsername;
 
-    @FindBy(name ="password")
+    @FindBy(name = "password")
     WebElement inputPassword;
 
-   @FindBy(className ="oxd-button")
+    @FindBy(className = "oxd-button")
     List<WebElement> SubmitButton;
 
     @FindBy(className = "oxd-userdropdown-name")
-   WebElement profileName;
+    public WebElement profileName;
 
     @FindBy(xpath = "//p[contains(@class,'oxd-alert-content-text')]")
-     WebElement errorMessage;
+    public WebElement errorMessage;
 
     @FindBy(xpath = "//span[contains(@class,'oxd-input-field-error-message')]")
-    WebElement fieldErrorMessage;
+    public WebElement fieldErrorMessage;
 
-    public LoginPage(WebDriver driver) throws IOException, InterruptedException {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-    }
-    public void takeScreenshot(String testName) throws IOException, InterruptedException {
-        TakesScreenshot ts = (TakesScreenshot) driver;
-        File srcFile = ts.getScreenshotAs(OutputType.FILE);
-
-        Random rand = new Random();
-        int autoNumber = rand.nextInt(500);
-
-        // ✅ File name = TestName + random number
-        String filePath = "C:/Users/User/Downloads/logintest/" + testName + "_" + autoNumber + ".png";
-        File destFile = new File(filePath);
-
-        FileUtils.copyFile(srcFile, destFile);
-        Thread.sleep(1000);
-        System.out.println("📸 Screenshot saved: " + filePath);
+    // --- Constructor (Fixed & Clean) ---
+    public LoginPage(WebDriver driver, ExtentTest test) {
+        LoginPage.driver = driver;
+        this.test = test;
+        PageFactory.initElements(driver, this); // ✅ Critical: Loads all @FindBy elements
     }
 
+    public LoginPage(WebDriver driver) {
+        this(driver, null);
+    }
 
+    public void inputLogin(String username, String password) throws InterruptedException, IOException {
 
-
-
-
-    public void inputLogin(String username,String password) throws InterruptedException, IOException {
-
-     //   inputUsername.clear();
+        inputUsername.clear();
         inputUsername.sendKeys(username);
+        if (test != null) test.info("Entered username: " + username);
         Thread.sleep(1000);
 
-       // inputPassword.clear();
+        inputPassword.clear();
         inputPassword.sendKeys(password);
+        if (test != null) test.info("Entered password");
         Thread.sleep(1000);
 
+        // Simple direct submit — NO if/else
         SubmitButton.get(0).click();
+        if (test != null) test.info("Clicked Login button");
+        UtilityPage.getScreenShot(driver, "After clicking Submit button", test);
         Thread.sleep(3000);
 
     }
 
+    public String getText(WebElement element) {
+        String value = element.getText().trim();
+        if (test != null) test.info("Fetched value: " + value);
+        return value;
 
-
-
-    // Fixed: returns actual profile name instead of null
-   public String getProfileName() {
-        return profileName.getText().trim();
     }
-
-    // Fixed: returns actual error message instead of empty string
-    public String getErrorMessage() {
-        return errorMessage.getText().trim();
-    }
-
-
-    public String getFieldError() {
-        return fieldErrorMessage.getText().trim();
-    }
-
 
 }
+
+
+
+
+
+
 
