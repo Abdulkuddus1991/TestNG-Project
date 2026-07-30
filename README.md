@@ -32,6 +32,6 @@ End-to-end test automation for the OrangeHRM Demo site using **Selenium WebDrive
   ## How to Run Project
 ```bash
 ./gradlew clean test -Psuitename=EmployeeRegression
-
+```
 
 
