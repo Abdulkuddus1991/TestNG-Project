@@ -23,16 +23,16 @@ End-to-end test automation for the OrangeHRM Demo site using **Selenium WebDrive
 - Extent Reports 5
 - WebDriverMana
 
-# Prerequisites
+## Prerequisites
 - Java JDK 11+ installed with `JAVA_HOME` configured
 - Gradle (or use the included Gradle Wrapper)
 - Chrome / Firefox browser
 - Git
 - 
-# How to Run Project
+## How to Run Project
 ```bash
 ./gradlew clean test -Psuitename=EmployeeRegression
 ```
 
-# Extent Report Photo
+## Extent Report Photo
 
